@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>死因年次推移分類による時系列死亡数・死亡率表示</title>
+
+<style>
+.outerdiv{
+	width		: 100%;
+}
+
+.titlediv{
+	font-size	: 20px;
+	font-weight: bold;
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+	border-top	: double;
+	border-bottom	: double;
+	line-height	: 150%;
+	color		: #000000;
+	background-color: #FCD5B4;
+}
+
+.maindiv{
+	font-size	: 16px;
+	font-weight: bold;
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+	line-height	: 120%;
+	color		: #000000;
+	background-color: #DCE6F1;
+}
+
+.detaildiv {
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+	font-size	: 14px;
+	color		: #000000;
+	background-color: #DCE6F1;
+}
+
+.detaildiv2 {
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+	font-size	: 10px;
+}
+
+#selectiondiv{
+	height:		: 50px;
+	font-size	: 16px;
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+}
+
+#sChartdiv {
+	height		: 600px;
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 0px;
+	padding		: 0px 5px;
+}
+
+#footerdiv {
+	margin-top	: 12px;
+	margin-left	: 10px;
+	margin-right: 10px;
+	padding		: 0px 5px;
+	font-size	: 12px;
+}
+
+
+</style>
+
+</head>
+
+<body>
+<div class="outerdiv">
+
+  <div class="titlediv">
+     <b>死因年次推移分類による時系列死亡数・死亡数率表示（1899年-2017年、e-stat公開データを編集）</b><br/>
+  </div>
+
+
+  <div class="detaildiv">
+   &nbsp・ 出典は、平成29年人口動態調査「上巻 死亡 第５．１２表 死因年次推移分類別にみた性別死亡数及び率（人口１０万対）」です。</br>
+   &nbsp・ 死因年次推移分類、表示種別（死亡数/死亡率）、性別（総数/男/女）を選択できます。</br>
+  </div>
+  
+  <div class="detaildiv2">
+&nbsp注</br>
+&nbsp・ 死因分類の改正により、年次別比較には完全な内容の一致をみることはできない。</br>
+&nbsp・ 昭和25年の脳血管疾患には、B46.b(352の一部、B22の後遺症及び１年以上経過したもの)を含むため、昭和25年報告書とは一致しない。</br>
+&nbsp・ 平成６年の心疾患の減少は、新しい死亡診断書(死体検案書)(平成７年１月施行)における「死亡の原因欄には、疾患の終末期の状態としての心不全、呼吸不全等は
+書かないでください。」という注意書きの、事前周知の影響によるものと考えられる。</br>
+&nbsp・ 表頭の死因名等は「ICD-10（2013年版）」(平成29年適用）の死因年次推移分類による。</br>
+&nbsp・ 昭和18年のみは樺太を含む数値であり、（e-Stat）総覧 上巻  第3-2-1（平成28年までの報告書 上巻 総覧 第3.2表）における死亡数とは一致しない。</br>
+&nbsp・ 昭和19～21年は資料不備のため省略した。</br>
+&nbsp・ 昭和22～47年は沖縄県を含まない。</br>
+&nbsp・ 死亡総数には死因年次推移分類以外の死因を含む。</br>
+&nbsp・ 昭和34年以前は男女不詳を含む</br>
+  </div>
+
+  <div id="selectiondiv">
+  <HR>
+  死因年次推移分類：
+  <select id="hiCause" size=1 style="width: 200px">
+  </select>
+  
+  &nbsp&nbsp&nbsp&nbsp表示種別：
+  <select id="type" size=1 style="width: 100px">
+  </select>
+  
+  &nbsp&nbsp&nbsp性別:
+  <select id="gender" size=1 style="width: 100px">
+  </select>
+  <HR>
+  </div>
+
+  <div id="sChartdiv"></div>
+
+</div>
+
+    
+<script src="./jquery/jquery-1.12.4.min.js"></script>
+<script src="./jquery/jquery-ui.min.js"></script>
+<script src="./amcharts/amcharts.js"></script>
+<script src="./amcharts/serial.js"></script>
+<script src="./amcharts/themes/light.js"></script>
+<script src="./RE01hist_list_y.js" charset="UTF-8"></script>
+
+<script src="./amcharts/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="./amcharts/plugins/export/export.css" type="text/css" media="all" />
+
+</body>
+</html>
+
